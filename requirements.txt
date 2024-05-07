@@ -21,3 +21,4 @@ aiofiles
 pyromod
 flask
 gunicorn==20.1.0
+werkzeug>=3.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
