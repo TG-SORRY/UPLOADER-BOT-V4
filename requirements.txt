@@ -20,4 +20,4 @@ tldextract
 aiofiles
 pyromod
 flask
-gunicorn==20.1.0
+gunicorn==21.2.0
