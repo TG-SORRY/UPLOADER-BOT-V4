@@ -1,9 +1,10 @@
-FROM python:3.12.2
+FROM python:3.9-slim
 WORKDIR /app
-ENV ENV PYTHONUNBUFFERED=1
+RUN apt-get update && \
+    apt-get install -y ffmpeg jq python3-dev && \
+    rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get install -y ffmpeg
+RUN pip install -r requirements.txt
+COPY . .
+RUN python3 -m pip check yt-dlp
 CMD ["python3", "bot.py"]

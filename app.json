@@ -1,6 +1,6 @@
 {
   "name": "Uploader Bot V4 🚀",
-  "description": "Telegram's best Open Source Url Uploader Bot. Create your Fork now.",
+  "description": "Telegram's best Open Source Url Uploader Bot. Fork now.",
   "logo": "https://te.legra.ph/file/82c925ccc38606d837831.jpg",
   "keywords": [
     "telegram",
@@ -33,7 +33,7 @@
       "value": ""
     },
     "DATABASE_URL": {
-      "description": "Your Mongodb Url",
+      "description": "Your Mongodb Url from mongodb.com",
       "value": ""
     },
     "LOG_CHANNEL": {
@@ -46,7 +46,7 @@
     },
     "OWNER_ID": {
       "description": "Your Telegram ID For Broadcast",
-      "value": "12345678"
+      "value": "1834908260"
     },
     "BOT_USERNAME": {
       "description": "Your Bot Username Without @",
