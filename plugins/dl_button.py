@@ -1,6 +1,5 @@
 # @Shrimadhav Uk | @LISA_FAN_LK
 
-
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -118,12 +117,10 @@ async def ddl_call_back(bot, update):
             if (await db.get_upload_as_doc(update.from_user.id)) is False:
                 thumbnail = await Gthumb01(bot, update)
                 await update.message.reply_document(
-                    #chat_id=update.message.chat.id,
                     document=download_directory,
                     thumb=thumbnail,
                     caption=description,
                     parse_mode=enums.ParseMode.HTML,
-                    #reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -135,7 +132,6 @@ async def ddl_call_back(bot, update):
                  width, height, duration = await Mdata01(download_directory)
                  thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
                  await update.message.reply_video(
-                    #chat_id=update.message.chat.id,
                     video=download_directory,
                     caption=description,
                     duration=duration,
@@ -144,7 +140,6 @@ async def ddl_call_back(bot, update):
                     supports_streaming=True,
                     parse_mode=enums.ParseMode.HTML,
                     thumb=thumb_image_path,
-                    #reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -156,13 +151,11 @@ async def ddl_call_back(bot, update):
                 duration = await Mdata03(download_directory)
                 thumbnail = await Gthumb01(bot, update)
                 await update.message.reply_audio(
-                    #chat_id=update.message.chat.id,
                     audio=download_directory,
                     caption=description,
                     parse_mode=enums.ParseMode.HTML,
                     duration=duration,
                     thumb=thumbnail,
-                    #reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -174,12 +167,10 @@ async def ddl_call_back(bot, update):
                 width, duration = await Mdata02(download_directory)
                 thumbnail = await Gthumb02(bot, update, duration, download_directory)
                 await update.message.reply_video_note(
-                    #chat_id=update.message.chat.id,
                     video_note=download_directory,
                     duration=duration,
                     length=width,
                     thumb=thumbnail,
-                    #reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -205,8 +196,6 @@ async def ddl_call_back(bot, update):
     else:
         await update.message.edit_caption(
             caption=Translation.NO_VOID_FORMAT_FOUND.format("Incorrect Link"),
-            
-            
             parse_mode=enums.ParseMode.HTML
         )
 
@@ -222,10 +211,8 @@ async def download_coroutine(bot, session, url, file_name, chat_id, message_id, 
             chat_id,
             message_id,
             text="""Initiating Download
-            
-**🔗 Uʀʟ :** `{}`
-
-**🗂️ Sɪᴢᴇ :** {}""".format(url, humanbytes(total_length))
+URL: {}
+File Size: {}""".format(url, humanbytes(total_length))
         )
         with open(file_name, "wb") as f_handle:
             while True:
@@ -245,13 +232,10 @@ async def download_coroutine(bot, session, url, file_name, chat_id, message_id, 
                     estimated_total_time = elapsed_time + time_to_completion
                     try:
                         current_message = """**Download Status**
-**🔗 Uʀʟ :** `{}`
-
-**🗂️ Sɪᴢᴇ :** {}
-
-**✅ Dᴏɴᴇ :** {}
-
-**⏱️ Eᴛᴀ :** {}""".format(
+URL: {}
+File Size: {}
+Downloaded: {}
+ETA: {}""".format(
     url,
     humanbytes(total_length),
     humanbytes(downloaded),

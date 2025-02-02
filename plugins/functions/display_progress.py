@@ -21,9 +21,9 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "[{0}{1}] \n".format(
-            ''.join(["█" for i in range(math.floor(percentage / 5))]),
-            ''.join(["" for i in range(20 - math.floor(percentage / 5))])
+        progress = "┏━━━━✦[{0}{1}]✦━━━━".format(
+            ''.join(["▣" for i in range(math.floor(percentage / 10))]),
+            ''.join(["▢" for i in range(10 - math.floor(percentage / 10))])
         )
 
         tmp = progress + Translation.PROGRESS.format(
@@ -35,7 +35,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         )
         try:
             await message.edit(
-              text="**{}**\n\n {}".format(
+              text= Translation.PROGRES.format(
               ud_type,
               tmp
                 ),
@@ -43,7 +43,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [ 
-                        InlineKeyboardButton('⛔️ Cancel', callback_data='close')
+                        InlineKeyboardButton('⛔ Cancel', callback_data=f"cancel_download+{id}")
                        ]
                    ]
                  )
@@ -53,6 +53,8 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
 
 
 def humanbytes(size):
+    # https://stackoverflow.com/a/49361727/4723940
+    # 2**10 = 1024
     if not size:
         return ""
     power = 2 ** 10
