@@ -14,6 +14,7 @@ from pyrogram import filters
 import os
 import time
 import random
+from pyrogram import enums
 from pyrogram import Client
 from plugins.functions.verify import verify_user, check_token, check_verification, get_token
 from plugins.functions.forcesub import handle_force_subscribe
@@ -43,7 +44,7 @@ async def echo(bot, update):
             ]]
             await update.reply_text(
                 text="<b>Pʟᴇᴀsᴇ Vᴇʀɪꜰʏ Fɪʀsᴛ Tᴏ Usᴇ Mᴇ</b>",
-                protect_content=True,
+                #protect_content=True,
                 reply_markup=InlineKeyboardMarkup(button)
             )
             return
