@@ -22,4 +22,5 @@ pyromod
 yt-dlp
 pytube
 flask
-gunicorn==20.1.0
+gunicorn==23.0.0
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
